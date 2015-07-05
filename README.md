@@ -1,6 +1,6 @@
 # fight4clojure
 
-My solution problem from 4clojure.com
+My solutions for the problems from 4clojure.com
 
 
 ## Usage

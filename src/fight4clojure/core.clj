@@ -412,3 +412,54 @@
   (fn [s]
     (sort-by #(clojure.string/lower-case %)
              (clojure.string/split s #"\W"))))
+
+
+(def problem-71
+  last)
+
+
+;; problem-72
+;; apply +
+
+
+(def problem-73
+  (fn [board]
+    (loop [table (concat
+                  board
+                  (apply map vector board)
+                  [(map-indexed #(nth %2 %1) board)]
+                  [(map-indexed #(nth (reverse %2) %1) board)])]
+      (cond
+        (empty? table)
+        nil
+        (= [:x :x :x] (first table))
+        :x
+        (= [:o :o :o] (first table))
+        :o
+        :else
+        (recur (rest table))))))
+
+
+(def problem-74
+  (fn [x]
+    (clojure.string/join
+     ","
+     (filter (fn [x] (= 0.0 (mod (Math/sqrt x) 1)))
+             (map #(Integer/parseInt %)
+                  (clojure.string/split x #","))))))
+
+
+(def problem-75
+  (fn [x]
+    (letfn [(gcd [x y]
+              (let [[x y] (sort [x y])]
+                (loop [x x
+                       y y
+                       acc x]
+                  (if (= 0 (mod y acc) (mod x acc))
+                    acc
+                    (recur x y (dec acc))))))]
+      (if (= x 1)
+        x
+        (count (filter #(= 1 %) (map gcd (range 1 x) (repeat x))))))))
+

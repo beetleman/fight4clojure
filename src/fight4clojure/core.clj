@@ -551,3 +551,12 @@
                  (map
                   (fn [[_ v]] (set v))
                   (group-by sort x))))))
+
+
+(def problem-78
+  "https://www.4clojure.com/problem/78"
+  (fn [x & args]
+    (loop [f (apply x args)]
+      (if (fn? f)
+        (recur (f))
+        f))))

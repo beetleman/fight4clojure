@@ -538,3 +538,16 @@
         x
         (count (filter #(= 1 %) (map gcd (range 1 x) (repeat x))))))))
 
+
+(def problem-76
+  "https://www.4clojure.com/problem/76"
+  [1 3 5 7 9 11])
+
+
+(def problem-77
+  "https://www.4clojure.com/problem/77"
+  (fn [x]
+    (set (filter #(< 1 (count %))
+                 (map
+                  (fn [[_ v]] (set v))
+                  (group-by sort x))))))

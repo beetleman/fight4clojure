@@ -191,7 +191,7 @@
 
 
 (def problem-38
-  (fn [f & r] (reduce #(if (>%1 %2) %1 %2) f r)))
+  (fn [f & r] (reduce #(if (> %1 %2) %1 %2) f r)))
 
 
 (def problem-39

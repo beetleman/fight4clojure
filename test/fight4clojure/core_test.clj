@@ -38,3 +38,17 @@
                    (my-odd? [x] (if (zero? x) false #(my-even? (dec x))))]
              (map (partial problem-78 my-even?) (range 6)))
            [true false true false true false]))))
+
+
+(deftest a-test-problem-79
+  (testing "problem-79"
+    (is (= 7 (problem-79 '([1]
+                           [2 4]
+                           [5 1 4]
+                           [2 3 4 5]))))
+    (is (= 20 (problem-79 '([3]
+                            [2 4]
+                            [1 9 3]
+                            [9 9 2 4]
+                            [4 6 6 7 8]
+                            [5 7 3 5 1 4]))))))

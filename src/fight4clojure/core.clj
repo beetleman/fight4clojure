@@ -560,3 +560,16 @@
       (if (fn? f)
         (recur (f))
         f))))
+
+
+(def problem-79
+  "https://www.4clojure.com/problem/79"
+  (fn [tri]
+    (let [tri (vec tri)]
+      (letfn [(step [x y y+]
+                (map #(+ (get-in tri [x y]) %) (get-sums (inc x) y+)))
+              (get-sums [x y]
+                (if (= (count tri) x)
+                  [0]
+                  (concat (step x y y) (step x y (inc y)))))]
+        (apply min (get-sums 0 0))))))

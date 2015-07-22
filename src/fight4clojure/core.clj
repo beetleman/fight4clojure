@@ -166,7 +166,7 @@
   (fn flatten* [to-flatten]
     (loop [old-seq (rest to-flatten)
            now (first to-flatten)
-           new-seq '()] 
+           new-seq '()]
       (if (nil? now)
         new-seq
         (recur (rest old-seq)
@@ -244,16 +244,16 @@
 
 (def problem-41
   "https://www.4clojure.com/problem/41"
-  (fn [xs n] 
-    (mapcat (partial take (dec n)) 
+  (fn [xs n]
+    (mapcat (partial take (dec n))
             (partition-all n xs))))
 
 
 (def problem-42
   "https://www.4clojure.com/problem/42"
-  (fn [n] 
-    (if (>= 1 n ) 
-      n 
+  (fn [n]
+    (if (>= 1 n )
+      n
       (apply * (range 1 (inc n))))))
 
 

@@ -61,3 +61,10 @@
     (is (= (problem-80 496) true))
     (is (= (problem-80 500) false))
     (is (= (problem-80 8128) true))))
+
+
+(deftest a-test-problem-81
+  (testing "problem-81"
+    (is (= (problem-81 #{0 1 2 3} #{2 3 4 5}) #{2 3}))
+    (is (= (problem-81 #{0 1 2} #{3 4 5}) #{}))
+    (is (= (problem-81 #{:a :b :c :d} #{:c :e :a :f :d}) #{:a :c :d}))))

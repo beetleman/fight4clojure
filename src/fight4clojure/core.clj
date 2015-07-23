@@ -579,3 +579,9 @@
   "https://www.4clojure.com/problem/80"
   (fn [x]
     (= x (last (take-while #(<= % x) (reductions + (range)))))))
+
+
+(def problem-81
+  "https://www.4clojure.com/problem/81"
+  (fn [x y]
+    (set (filter #(contains? x %) y))))

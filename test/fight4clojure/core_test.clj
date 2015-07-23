@@ -52,3 +52,12 @@
                             [9 9 2 4]
                             [4 6 6 7 8]
                             [5 7 3 5 1 4]))))))
+
+
+(deftest a-test-problem-80
+  (testing "problem-80"
+    (is (= (problem-80 6) true))
+    (is (= (problem-80 7) false))
+    (is (= (problem-80 496) true))
+    (is (= (problem-80 500) false))
+    (is (= (problem-80 8128) true))))

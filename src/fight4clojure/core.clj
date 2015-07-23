@@ -573,3 +573,9 @@
                   [0]
                   (concat (step x y y) (step x y (inc y)))))]
         (apply min (get-sums 0 0))))))
+
+
+(def problem-80
+  "https://www.4clojure.com/problem/80"
+  (fn [x]
+    (= x (last (take-while #(<= % x) (reductions + (range)))))))

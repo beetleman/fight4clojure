@@ -615,4 +615,4 @@
                 (for [head words
                       tail (all-paths (disj (set words) head))]
                   (cons head tail))))]
-      (true? (some true? (map path-is-ok? (all-paths words)))))))
+      (->> words (all-paths) (map path-is-ok?) (some true?) (true?)))))

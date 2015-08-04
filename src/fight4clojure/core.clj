@@ -590,29 +590,29 @@
 (def problem-82
   "https://www.4clojure.com/problem/82"
   (fn [words]
-    (letfn [(is-ok? [w1 w2]
-              (loop [w1 (vec w1)
-                     w2 (vec w2)
-                     acc 0]
-                (cond
-                  (> (+ acc (Math/abs (- (count w1) (count w2)))) 1)
-                  false
-                  (some true? (map empty? [w1 w2]))
-                  (<= acc 1)
-                  (= (first w1) (first w2))
-                  (recur (rest w1) (rest w2) acc)
-                  (= (first w1) (second w2))
-                  (recur w1 (rest w2) (inc acc))
-                  (= (second w1) (first w2))
-                  (recur (rest w1) w2 (inc acc))
-                  :else
-                  (recur (rest w1) (rest w2) (inc acc)))))
-            (path-is-ok? [words]
-              (every? true? (map (partial apply is-ok?) (partition 2 1 words))))
-            (all-paths [words]
-              (if (= 1 (count words))
-                (list words)
-                (for [head words
-                      tail (all-paths (disj (set words) head))]
-                  (cons head tail))))]
-      (->> words (all-paths) (map path-is-ok?) (some true?) (true?)))))
+    (let [is-ok? (memoize (fn [w1 w2]
+                           (loop [w1 (vec w1)
+                                  w2 (vec w2)
+                                  acc 0]
+                             (cond
+                               (> (+ acc (Math/abs (- (count w1) (count w2)))) 1)
+                               false
+                               (some true? (map empty? [w1 w2]))
+                               (<= acc 1)
+                               (= (first w1) (first w2))
+                               (recur (rest w1) (rest w2) acc)
+                               (= (first w1) (second w2))
+                               (recur w1 (rest w2) (inc acc))
+                               (= (second w1) (first w2))
+                               (recur (rest w1) w2 (inc acc))
+                               :else
+                               (recur (rest w1) (rest w2) (inc acc))))))]
+      (letfn [(path-is-ok? [words]
+                (every? true? (map (partial apply is-ok?) (partition 2 1 words))))
+              (all-paths [words]
+                (if (= 1 (count words))
+                  (list words)
+                  (for [head words
+                        tail (all-paths (disj (set words) head))]
+                    (cons head tail))))]
+        (->> words (all-paths) (map path-is-ok?) (some true?) (true?))))))

@@ -585,3 +585,34 @@
   "https://www.4clojure.com/problem/81"
   (fn [x y]
     (set (filter #(contains? x %) y))))
+
+
+(def problem-82
+  "https://www.4clojure.com/problem/82"
+  (fn [words]
+    (letfn [(is-ok [w1 w2]
+              (loop [w1 (vec w1)
+                     w2 (vec w2)
+                     acc 0]
+                (cond
+                  (> (Math/abs (- (count w1) (count w2))) 1)
+                  false
+                  (some true? (map empty? [w1 w2]))
+                  (<= acc 1)
+                  (= (first w1) (first w2))
+                  (recur (rest w1) (rest w2) acc)
+                  (= (first w1) (second w2))
+                  (recur w1 (rest w2) (inc acc))
+                  (= (second w1) (first w2))
+                  (recur (rest w1) w2 (inc acc))
+                  :else
+                  (recur (rest w1) (rest w2) (inc acc)))))
+            (all-pairs [coll]
+              (set (for [x coll y coll :when (not= x y)] (set [x y]))))]
+      ;; (has-path (filterv #(apply is-ok %1) (pairs words)))
+      ;; (find-pairs :a words)
+      (let [pairs (filterv #(apply is-ok %1) (all-pairs words))]
+        (= (count words)
+           (count (set
+                   (map (fn [w] (set (filter #(contains? % w) pairs)))
+                        words))))))))

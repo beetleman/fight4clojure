@@ -68,3 +68,13 @@
     (is (= (problem-81 #{0 1 2 3} #{2 3 4 5}) #{2 3}))
     (is (= (problem-81 #{0 1 2} #{3 4 5}) #{}))
     (is (= (problem-81 #{:a :b :c :d} #{:c :e :a :f :d}) #{:a :c :d}))))
+
+
+(deftest a-test-problem-82
+  (testing "problem-82"
+    (is (= (problem-82 #{"hat" "coat" "dog" "cat" "oat" "cot" "hot" "hog"}) true))
+    (is (= (problem-82 #{"cot" "hot" "bat" "fat"}) false))
+    (is (= (problem-82 #{"to" "top" "stop" "tops" "toss"}) false))
+    (is (= (problem-82 #{"spout" "do" "pot" "pout" "spot" "dot"}) true))
+    (is (= (problem-82 #{"share" "hares" "shares" "hare" "are"}) true))
+    (is (= (problem-82 #{"share" "hares" "hare" "are"}) false))))

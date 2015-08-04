@@ -616,3 +616,9 @@
                         tail (all-paths (disj (set words) head))]
                     (cons head tail))))]
         (->> words (all-paths) (map path-is-ok?) (some true?) (true?))))))
+
+
+(def problem-83
+  "https://www.4clojure.com/problem/83"
+  (fn [& args]
+    (= (set args) #{true false})))

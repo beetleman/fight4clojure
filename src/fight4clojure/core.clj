@@ -622,3 +622,9 @@
   "https://www.4clojure.com/problem/83"
   (fn [& args]
     (= (set args) #{true false})))
+
+
+(def problem-84
+  "https://www.4clojure.com/problem/84"
+  (fn [x]
+    x))

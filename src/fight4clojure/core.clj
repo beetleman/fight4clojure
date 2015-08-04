@@ -626,5 +626,25 @@
 
 (def problem-84
   "https://www.4clojure.com/problem/84"
-  (fn [x]
-    x))
+  (fn [binary-rels]
+    (letfn [(find-transitive-closure [x y]
+              (cond
+                (= (first x) (last y))
+                [(first y) (last x)]
+                (= (last x) (first y))
+                [(first x) (last y)]
+                :else
+                []))
+            (step-transite-closure [x]
+              (loop [x x
+                     acc #{}]
+                (if (empty? x)
+                  (reduce conj binary-rels (filter (complement empty?) acc))
+                  (recur (rest x) (concat acc
+                                          (map (partial find-transitive-closure (first x))
+                                               (rest x)))))))]
+      (loop [last-step (step-transite-closure binary-rels)]
+        (let [next-step (step-transite-closure last-step)]
+          (if (= last-step next-step)
+            last-step
+            (recur next-step)))))))

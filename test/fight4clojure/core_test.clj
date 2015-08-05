@@ -78,3 +78,11 @@
     (is (= (problem-82 #{"spout" "do" "pot" "pout" "spot" "dot"}) true))
     (is (= (problem-82 #{"share" "hares" "shares" "hare" "are"}) true))
     (is (= (problem-82 #{"share" "hares" "hare" "are"}) false))))
+
+
+(deftest a-test-problem-85
+  (testing "problem-85"
+    (is (= (problem-85 #{1 :a}) #{#{1 :a} #{:a} #{} #{1}}))
+    (is (= (problem-85 #{}) #{#{}}))
+    (is (= (problem-85 #{1 2 3}) #{#{} #{1} #{2} #{3} #{1 2} #{1 3} #{2 3} #{1 2 3}}))
+    (is (= (count (problem-85 (into #{} (range 10)))) 1024))))

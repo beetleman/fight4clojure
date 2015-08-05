@@ -616,3 +616,14 @@
                         tail (all-paths (disj (set words) head))]
                     (cons head tail))))]
         (->> words (all-paths) (map path-is-ok?) (some true?) (true?))))))
+
+
+(def problem-85
+  "https://www.4clojure.com/problem/85"
+  (fn [sets]
+    (letfn [(drop-one [sets]
+              (set (mapcat (fn [x] (map (partial disj x) x)) sets)))]
+      (loop [acc #{sets}]
+        (if (contains? acc #{})
+          acc
+          (recur (reduce conj (drop-one acc) acc)))))))

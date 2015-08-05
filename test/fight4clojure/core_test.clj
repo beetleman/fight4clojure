@@ -104,3 +104,10 @@
           (= (problem-84 progeny)
              #{["father" "son"] ["father" "grandson"]
                ["uncle" "cousin"] ["son" "grandson"]})))))
+
+(deftest a-test-problem-85
+  (testing "problem-85"
+    (is (= (problem-85 #{1 :a}) #{#{1 :a} #{:a} #{} #{1}}))
+    (is (= (problem-85 #{}) #{#{}}))
+    (is (= (problem-85 #{1 2 3}) #{#{} #{1} #{2} #{3} #{1 2} #{1 3} #{2 3} #{1 2 3}}))
+    (is (= (count (problem-85 (into #{} (range 10)))) 1024))))

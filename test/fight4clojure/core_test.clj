@@ -111,3 +111,11 @@
     (is (= (problem-85 #{}) #{#{}}))
     (is (= (problem-85 #{1 2 3}) #{#{} #{1} #{2} #{3} #{1 2} #{1 3} #{2 3} #{1 2 3}}))
     (is (= (count (problem-85 (into #{} (range 10)))) 1024))))
+
+
+(deftest a-test-problem-86
+  (testing "problem-86"
+    (is (= (problem-86 7) true))
+    (is (= (problem-86 986543210) true))
+    (is (= (problem-86 2) false))
+    (is (= (problem-86 3) false))))

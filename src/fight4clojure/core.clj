@@ -658,3 +658,25 @@
         (if (contains? acc #{})
           acc
           (recur (reduce conj (drop-one acc) acc)))))))
+
+
+(def problem-86
+  "https://www.4clojure.com/problem/86"
+  (fn [x]
+    (letfn [(happy-split [x]
+              (loop [x x
+                     acc []]
+                (if (< x 10)
+                  (sort (conj acc x))
+                  (recur (quot x 10) (conj acc (mod x 10))))))
+            (happy-sum [x]
+              (reduce + (map #(* % %) x)))]
+      (loop [digits (happy-split x)
+             seen #{}]
+        (cond
+          (seen digits)
+          false
+          (= digits [1])
+          true
+          :else
+          (recur (-> digits happy-sum happy-split) (conj seen digits)))))))

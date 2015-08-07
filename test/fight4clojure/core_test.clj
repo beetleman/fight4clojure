@@ -119,3 +119,11 @@
     (is (= (problem-86 986543210) true))
     (is (= (problem-86 2) false))
     (is (= (problem-86 3) false))))
+
+
+(deftest a-test-problem-88
+  (testing "problem-88"
+    (is (= (problem-88 #{1 2 3 4 5 6} #{1 3 5 7}) #{2 4 6 7}))
+    (is (= (problem-88 #{:a :b :c} #{}) #{:a :b :c}))
+    (is (= (problem-88 #{} #{4 5 6}) #{4 5 6}))
+    (is (= (problem-88 #{[1 2] [2 3]} #{[2 3] [3 4]}) #{[1 2] [3 4]}))))

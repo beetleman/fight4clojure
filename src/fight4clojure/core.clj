@@ -680,3 +680,13 @@
           true
           :else
           (recur (-> digits happy-sum happy-split) (conj seen digits)))))))
+
+
+(def problem-88
+  "https://www.4clojure.com/problem/88"
+  (fn [xs ys]
+    (letfn [(one-side [xs ys]
+              (set (filter
+                    (partial (complement contains?) xs)
+                    ys)))]
+      (into (one-side xs ys) (one-side ys xs)))))

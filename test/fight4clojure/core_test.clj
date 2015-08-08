@@ -127,3 +127,22 @@
     (is (= (problem-88 #{:a :b :c} #{}) #{:a :b :c}))
     (is (= (problem-88 #{} #{4 5 6}) #{4 5 6}))
     (is (= (problem-88 #{[1 2] [2 3]} #{[2 3] [3 4]}) #{[1 2] [3 4]}))))
+
+
+(deftest a-test-problem-89
+  (testing "problem-89"
+    (is (= true
+           (problem-89 [[:a :b]])))
+    (is (= false
+           (problem-89 [[:a :a] [:b :b]])))
+    (is (= false
+           (problem-89 [[:a :b] [:a :b] [:a :c] [:c :a]
+                [:a :d] [:b :d] [:c :d]])))
+    (is (= true
+           (problem-89 [[1 2] [2 3] [3 4] [4 1]])))
+    (is (= true
+           (problem-89 [[:a :b] [:a :c] [:c :b] [:a :e]
+                [:b :e] [:a :d] [:b :d] [:c :e]
+                [:d :e] [:c :f] [:d :f]])))
+    (is (= false
+           (problem-89 [[1 2] [2 3] [2 4] [2 5]])))))

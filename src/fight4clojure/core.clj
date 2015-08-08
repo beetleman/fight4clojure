@@ -690,3 +690,9 @@
                     (partial (complement contains?) xs)
                     ys)))]
       (into (one-side xs ys) (one-side ys xs)))))
+
+
+(def problem-89
+  "https://www.4clojure.com/problem/88"
+  (fn [x]
+    true))

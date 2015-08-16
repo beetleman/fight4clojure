@@ -702,21 +702,19 @@
     (letfn [(make-graph-map [edges]
               (apply merge-with into (map #(group-by % edges) [first last])))
             (odd-degree? [graph-map vertex]
-              (-> vertex graph-map count odd?))
-            (has-isolated-vortex? [graph-map]
-              (some (fn [[k v]] (= v [[k k] [k k]])) graph-map))]
-      (loop [graph-map (make-graph-map edges)
-             vertexes (-> edges flatten set)
-             odd-counter 0]
-        (cond
-          (has-isolated-vortex? graph-map)
-          false
-          (< 2 odd-counter)
-          false
-          (empty? vertexes)
-          true
-          :else
-          (recur graph-map
-                 (rest vertexes)
-                 (+ odd-counter
-                    (if (odd-degree? graph-map (first vertexes)) 1 0))))))))
+              (-> vertex graph-map count odd?))]
+      (let [graph-map (make-graph-map edges)
+            isolated-vortex (some (fn [[k v]] (= v [[k k] [k k]])) graph-map)]
+        (loop [vertexes (-> edges flatten set)
+               odd-counter 0]
+          (cond
+            (true? isolated-vortex)
+            false
+            (< 2 odd-counter)
+            false
+            (empty? vertexes)
+            true
+            :else
+            (recur (rest vertexes)
+                   (+ odd-counter
+                      (if (odd-degree? graph-map (first vertexes)) 1 0)))))))))

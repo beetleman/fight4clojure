@@ -718,3 +718,9 @@
             (recur (rest vertexes)
                    (+ odd-counter
                       (if (odd-degree? graph-map (first vertexes)) 1 0)))))))))
+
+
+(def problem-90
+  "https://www.4clojure.com/problem/90"
+  (fn [xs ys]
+    (set (for [x xs y ys] [x y]))))

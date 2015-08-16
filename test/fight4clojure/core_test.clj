@@ -146,3 +146,16 @@
                 [:d :e] [:c :f] [:d :f]])))
     (is (= false
            (problem-89 [[1 2] [2 3] [2 4] [2 5]])))))
+
+
+
+(deftest a-test-problem-90
+  (testing "problem-90"
+    (is (= (problem-90 #{"ace" "king" "queen"} #{"♠" "♥" "♦" "♣"})
+           #{["ace"   "♠"] ["ace"   "♥"] ["ace"   "♦"] ["ace"   "♣"]
+             ["king"  "♠"] ["king"  "♥"] ["king"  "♦"] ["king"  "♣"]
+             ["queen" "♠"] ["queen" "♥"] ["queen" "♦"] ["queen" "♣"]}))
+    (is (= (problem-90 #{1 2 3} #{4 5})
+           #{[1 4] [2 4] [3 4] [1 5] [2 5] [3 5]}))
+    (is (= 300 (count (problem-90 (into #{} (range 10))
+                          (into #{} (range 30))))))))

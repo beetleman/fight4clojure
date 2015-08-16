@@ -693,6 +693,30 @@
 
 
 (def problem-89
-  "https://www.4clojure.com/problem/88"
-  (fn [x]
-    true))
+  "https://www.4clojure.com/problem/88
+  1. If graph has no odd degree vertex, there is at least one Eulerian Circuit.
+  2. If graph as two vertices with odd degree, there is no Eulerian Circuit but at least one Eulerian Path.
+  3. If graph has more than two vertices with odd degree, there is no Eulerian Circuit or Eulerian Path.
+  "
+  (fn [edges]
+    (letfn [(make-graph-map [edges]
+              (apply merge-with into (map #(group-by % edges) [first last])))
+            (odd-degree? [graph-map vertex]
+              (-> vertex graph-map count odd?))
+            (has-isolated-vortex? [graph-map]
+              (some (fn [[k v]] (= v [[k k] [k k]])) graph-map))]
+      (loop [graph-map (make-graph-map edges)
+             vertexes (-> edges flatten set)
+             odd-counter 0]
+        (cond
+          (has-isolated-vortex? graph-map)
+          false
+          (< 2 odd-counter)
+          false
+          (empty? vertexes)
+          true
+          :else
+          (recur graph-map
+                 (rest vertexes)
+                 (+ odd-counter
+                    (if (odd-degree? graph-map (first vertexes)) 1 0))))))))
